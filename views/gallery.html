@@ -1,0 +1,16 @@
+<h4>Gallery:</h4>
+<div ng-repeat="video in videoObjects" > 
+	<div class="col-md-3 panel">
+		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Zamknij</span></button>
+		<div class="col-md-12">
+			<img ng-src="{{video.entry.media$group.media$thumbnail[1].url}}" class="img-rounded img-thumbnail center-block" play-video="">
+			
+		</div><br>
+		<ul>
+			<li><b>Nazwa filmiku:</b> {{video.entry.title.$t}}</li>
+			<li><b>Który obejrzano:</b> {{video.entry.yt$statistics.viewCount}} razy</li>
+			<li><b>I polubiono:</b> {{video.entry.yt$rating.numLikes}} razy</li>
+		</ul>
+		
+	</div>
+</div>
