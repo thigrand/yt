@@ -1,16 +1,44 @@
 <h4>Gallery:</h4>
-<div ng-repeat="video in videoObjects" > 
-	<div class="col-md-3 panel">
-		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Zamknij</span></button>
-		<div class="col-md-12">
-			<img ng-src="{{video.entry.media$group.media$thumbnail[1].url}}" class="img-rounded img-thumbnail center-block" play-video="">
-			
-		</div><br>
-		<ul>
-			<li><b>Nazwa filmiku:</b> {{video.entry.title.$t}}</li>
-			<li><b>Który obejrzano:</b> {{video.entry.yt$statistics.viewCount}} razy</li>
-			<li><b>I polubiono:</b> {{video.entry.yt$rating.numLikes}} razy</li>
-		</ul>
-		
-	</div>
+
+
+<div ng-repeat="video in getArray()" >
+    <div class=" alert col-md-3 alert-white alert-dismissable">
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" ng-init="somefunc(video.entry.media$group.yt$videoid.$t)">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Zamknij</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{{video.entry.title.$t}}</h4>
+                    </div>
+                    <div class="modal-body" >
+
+					<iframe id="player" class="center-block" width="640" height="390" 
+					ng-src="{{baseUrl + video.entry.media$group.yt$videoid.$t | trustAsResourceUrl}}" frameborder="0" allowfullscreen></iframe>
+					  <br>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true" ng-click="closeBox($index);">&times;</button>
+        <div class="col-md-12" >
+            <img ng-src="{{video.entry.media$group.media$thumbnail[1].url}}" class="img-rounded img-thumbnail center-block" modal-player="" data-toggle="modal" data-target="#myModal">
+
+        </div>
+        <br>
+        <ul>
+            <li><b>Nazwa filmiku:</b> {{video.entry.title.$t}}</li>
+            <li><b>Który obejrzano:</b> {{video.entry.yt$statistics.viewCount}} razy</li>
+            <li><b>I polubiono:</b> {{video.entry.yt$rating.numLikes}} razy</li>
+        </ul>
+
+    </div>
+
+
 </div>

@@ -28,6 +28,8 @@
     </div>
 
     <div class="container" ng-contoller="MainCtrl">
+
+
       <div class="row panel" id="inputRow">
         <form ng-submit="addVideo()">
           <input type="text" name="input" ng-model="ytUrl" ng-trim="false" ></input>
@@ -38,12 +40,15 @@
 
           
       </div>
+      
       <div class="row" id="pagination">
         <ul class="pager">
-          <li><a href="">Poprzednia strona</a></li>
-          <li><a href="">Następna strona</a></li>
+          <li ><a href="" ng-click="decrementPage()" >Poprzednia strona</a></li>
+          <li><a href="" ng-click="incrementPage()" >Następna strona</a></li>
         </ul> 
+
       </div> 
+      <pager total-items="pagesAmount" ng-model="currentPage"></pager>
     </div>
 
     <div class="footer" id="results">
@@ -87,17 +92,21 @@
 
         <script src="scripts/app.js"></script>
 
+        <script src="scripts/controllers/main-controller.js"></script>
+
         <script src="https://apis.google.com/js/client.js?onload=ytAPI"></script>
         <script src="scripts/services/yt-api.js"></script>
-        <script src="scripts/directives/st.js"></script>
+        <script src="scripts/services/video-data.js"></script>
+        
         <script src="scripts/directives/display-gallery.js"></script>
-        <script src="scripts/controllers/main-controller.js"></script>
+        <script src="scripts/filters/trustAsResourceUrl.js"></script>
+
         
 
-        <script src="scripts/services/services.js"></script>
-        <script src="scripts/filters/filters.js"></script>
-
-        <script src="scripts/services/video-data.js"></script>
+<!--         // <script src="scripts/directives/st.js"></script>
+        // <script src="scripts/services/swf-object.js"></script>
+        // <script src="scripts/filters/iterate-for.js"></script>
+        // <script src="scripts/directives/modal-player.js"></script> -->
         <!-- endbuild -->
 </body>
 </html>
