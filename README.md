@@ -1,3 +1,4 @@
+@@ -1,40 +0,0 @@
 # Napisz aplikacje, ktora bedzie uzywac:
 . stacku angularowego (angular, bower, grunt)
 . stacku testowego (karma, chai, sinon)
