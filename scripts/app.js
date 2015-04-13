@@ -19,6 +19,7 @@ angular
     'ngSanitize',
     'ngTouch',
     'LocalStorageModule',
+    'ngDraggable',
 
   ])
   .config(function ($routeProvider) {

@@ -27,7 +27,7 @@ function ytAPI() {
 		gapi.client.setApiKey(apiKey);
 		gapi.client.load('urlshortener', 'v3').then(makeRequest);
 	}
-	console.log(gapi, "Objekt gapi. od Googla.");
+	
 
 	// console.log(gapi.config.get);
 	return init;
