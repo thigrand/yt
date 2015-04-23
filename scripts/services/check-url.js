@@ -1,8 +1,9 @@
+'use strict';
 function checkAnchor() {
 	var takeIdFromUrl = function (url, switcher) {
 		var videoId = "";
 
-		if(switcher === 1){
+		if(switcher === 1) {
 			videoId = url;
 		}
 		if(switcher === 2) {
@@ -15,11 +16,16 @@ function checkAnchor() {
 				videoId = videoId.substring(0, ampersandPosition);
 			}
 		}
+		if(switcher === 5) {
+			
+			videoId = url.substring(18, 27);
+		}
 		return (videoId )? videoId : -1;
 	};
 	var checkUrl = function(url) {
 		var isGood = url,
 			goodUrl = -1;
+		var reg = new RegExp('^[0-9]+$');
 		if(url.length === 11) { 
 			goodUrl = url;
 		}
@@ -29,10 +35,24 @@ function checkAnchor() {
 		if(url.length >= 11 && url.substring(0, 24) === "https://www.youtube.com/") {
 			goodUrl = takeIdFromUrl(url, 3);
 		}
-		return (goodUrl)? goodUrl : -1;
+		if((url.length === 9 || url.length === 8) && reg.test(url)) {
+			goodUrl = url;
+		}
+		if(url.length >= 11 && url.substring(0, 18) === "https://vimeo.com/") {
+			goodUrl = takeIdFromUrl(url, 5);
+		}
+
+		return (goodUrl) ? goodUrl : -1;
 	};
 
-	
+	// <iframe src="https://player.vimeo.com/video/124876737" width="500" height="309" frameborder="0" 
+	// webkitallowfullscreen mozallowfullscreen allowfullscreen>
+	// </iframe> 
+	// <p>
+	// 	<a href="https://vimeo.com/124876737">SHURA | 2SHY</a> from 
+	// 	<a href="https://vimeo.com/davidmhelman">david m. helman</a> on 
+	// 	<a href="https://vimeo.com">Vimeo</a>.
+	// </p>
 
 	this.checkUrl = checkUrl;
 	return this;

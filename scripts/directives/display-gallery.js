@@ -4,14 +4,34 @@ function displayGallery($http, videoData, $sce, storage, checkAnchor, localStora
 		templateUrl:'views/gallery.html',
 		link: function($scope, $http) {
 
+			$scope.cleare = function() {
+            	localStorageService.clearAll();
+            	console.log(localStorageService.keys(), 'local storage keys');
+ 			};
+			$scope.closeBox = function(boxIndex) {
 
-        //console.log(localStorageService.keys(), 'local storage keys');
-        	
+				var keysOfStorage = localStorageService.keys();
+				console.log(boxIndex, "boxIndex");
+				console.log(keysOfStorage, "keysOfStorage");
+				console.log(keysOfStorage[boxIndex], "keysOfStorage[boxIndex]");
+				localStorageService.remove(keysOfStorage[boxIndex]);
+				$scope.ytUrlIds = storage.getIdsFromStorage() ;//tu jest coś nie tak.
+				//getData();
+				console.log(localStorageService.keys(), "localStorageService.keys()");
+				console.log($scope.ytUrlIds, "$scope.ytUrlIds");
+			};
+        	$scope.modals = {};
+
+
 			$scope.ytUrl = '';//take value from input
-			$scope.ytUrlIds = storage.getIdsFromStorage() || [];
+			
+			$scope.ytUrlIds = storage.getIdsFromStorage() ;
+			console.log(localStorageService.keys());
+			console.log($scope.ytUrlIds);
 
 			$scope.videoObjects = [];
 			$scope.baseUrl = 'http://www.youtube.com/embed/';
+			$scope.baseUrlVimeo = 'https://player.vimeo.com/video/';
 
 
 			$scope.Math = window.Math;
@@ -21,10 +41,14 @@ function displayGallery($http, videoData, $sce, storage, checkAnchor, localStora
 			$scope.pagesAmount = $scope.Math.floor( $scope.boxAmount / $scope.boxPerPage);
 			$scope.iterateFrom = $scope.currentPage * $scope.boxPerPage;
 			
+
+
+
 			var getData = function() {
-				videoData.getDataFromYT($scope.ytUrlIds).then(function(data) {
-					$scope.videoObjects = data;//videoData.getDataFromYT($scope.ytUrlIds);
+				videoData.getData($scope.ytUrlIds).then(function(data) {
+					$scope.videoObjects = data;//przypisany jest obiekt z właściwościami zawierajacymi obiekty do kazdego filmiku
 				});
+				
 			};
 			getData();
 
@@ -32,17 +56,19 @@ function displayGallery($http, videoData, $sce, storage, checkAnchor, localStora
 			// 	return $scope.videoObjects.slice($scope.iterateFrom, $scope.boxPerPage);
 			// };
 
-
+			$scope.lastLsNumber = 1;
 			$scope.addVideo = function() {
 				var idFromUrl = checkAnchor.checkUrl($scope.ytUrl);
+				
 				if (idFromUrl !== -1){
 					$scope.ytUrlIds.push(idFromUrl);
-			console.log($scope.ytUrlIds.length);
+
 					console.log(idFromUrl);
-					storage.setStorage($scope.ytUrlIds.length-1, idFromUrl);
+					storage.setStorage($scope.lastLsNumber++, idFromUrl);
+					
 			console.log(localStorageService.keys());
 			console.log($scope.ytUrlIds);
-					$scope.ytUrlIds
+					//$scope.ytUrlIds
 					getData();
 					console.log($scope.ytUrlIds);
 				
@@ -52,17 +78,25 @@ function displayGallery($http, videoData, $sce, storage, checkAnchor, localStora
 				}
 			};
 			
-			$scope.closeBox = function(boxIndex) {
-				$scope.ytUrlIds.pop(boxIndex);
-				localStorageService.remove(boxIndex);
-			};
+
 
 			//do poprawy
 			//czyszczenie storage, dla testow w devie
-            $scope.cleare = function() {
-            	localStorageService.clearAll();
-            	console.log(localStorageService.keys(), 'local storage keys');
-            };
+
+			$scope.passToModal = function(obj, index) {
+
+			console.log(obj);
+			console.log(index);
+			console.log($scope.modals);
+
+				$scope.modals.video = obj;
+				$scope.modals.index = index;
+			console.log($scope.modal.video);
+			console.log($scope.modal.index);
+			return $scope.modals;
+			};
+
+
 
             $scope.getIframeSrc = function(id) {
 				var scr = "http://www.youtube.com/embed/" + id;

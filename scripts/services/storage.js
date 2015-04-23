@@ -1,12 +1,16 @@
+'use strict';
 function storage(localStorageService) {
 
 	var getIdsFromStorage = function () {
 		//wez wszystkie elementy ze storage i przypisz do nowej 
 		var idsFromStorage = [];
-		for(var key in localStorageService.keys()) { //for(var i = 0; i < localStorageService.length() ; i++)
-			idsFromStorage.push(localStorageService.get(key));
+		var keysOfStorage = localStorageService.keys();
+
+		//console.log(localStorageService.keys(), "localStorageService.keys()");
+		for(var key in localStorageService.keys()) { //key 
+			idsFromStorage.push(localStorageService.get(keysOfStorage[key]));
+			//console.log(localStorageService.get(keysOfStorage[key]), "localStorageService.get(keysOfStorage[key])");
 		}					
-		console.log(idsFromStorage, 'idsFromStorage');
 		return idsFromStorage;
 	};	
 

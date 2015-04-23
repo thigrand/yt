@@ -32,4 +32,14 @@
 .alert-white 
 {
   background-color: #ffffff;
+  margin-right: 0px;
+  border-color: #000000;
+  border-style: groove;
+  height:350px
+  
 }
+.close-margin
+{
+  margin-right: 30px;
+}
+

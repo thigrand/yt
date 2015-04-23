@@ -31,15 +31,14 @@
 
 
       <div class="row panel" id="inputRow">
-        <form ng-submit="addVideo()">
-          <input type="text" name="input" ng-model="ytUrl" ng-trim="false" ></input>
-          <input type="submit" value="Add" ></input>
-        </form>
+          <form ng-submit="addVideo()">
+            <input type="text" name="input" ng-model="ytUrl" ng-trim="false" ></input>
+            <input type="submit" value="Add" ></input>
+          </form>
       </div>
       <button ng-click="cleare()">clear</button>
-      <div class="row jumbotron" id="gallery" display-gallery="">
 
-          
+      <div class="row jumbotron" id="gallery" display-gallery="">
       </div>
       
       <div class="row" id="pagination">
@@ -49,6 +48,7 @@
         </ul> 
 
       </div> 
+      
       <pager total-items="pagesAmount" ng-model="currentPage"></pager>
     </div>
 
@@ -82,7 +82,7 @@
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
-    <script src="bower_components/ngDraggable/ngDraggable.js"></script>
+    <script src="bower_components/angular-sortable-view/src/angular-sortable-view.js"></script>
     <!-- endbower -->
 
     
@@ -94,15 +94,17 @@
 
         <script src="scripts/app.js"></script>
 
-        <script src="scripts/services/yt-api.js"></script>
-        <script src="https://apis.google.com/js/client.js?onload=ytAPI"></script>
-
-
         <script src="scripts/services/storage.js"></script>
+        <script src="https://apis.google.com/js/client.js?onload=ytAPI"></script>
+        <script src="scripts/services/vimeo-api.js"></script>
+        <script src="scripts/services/yt-api.js"></script>
+        <script src="scripts/services/video-data.js"></script>
+
+        
         <script src="scripts/services/check-url.js"></script>
 
         <script src="scripts/controllers/main-controller.js"></script>
-        <script src="scripts/filters/trustAsResourceUrl.js"></script>
+        
 
 
         
@@ -111,7 +113,7 @@
         
 
         <script src="scripts/directives/display-gallery.js"></script>
-        <script src="scripts/services/video-data.js"></script>
+        <script src="scripts/filters/trustAsResourceUrl.js"></script>
 
         <script src="scripts/services/pagination.js"></script>
 
@@ -122,5 +124,13 @@
         // <script src="scripts/filters/iterate-for.js"></script>
         // <script src="scripts/directives/modal-player.js"></script> -->
         <!-- endbuild -->
+
+        <!-- 
+        1. pewnie dlatego, ze robisz wczytywanie i dodawanie po tym jaki film
+        sie zaladuje zamiast ladowac wszystkie hurtem, np. przy uzyciu $q.all
+        2. obstawiam, ze to wina closure - nie robisz gdzies domkniecia, albo
+        ciagle przekazujesz jedna wartosc do dyrektywy
+        3. tego nie widzialem a aktualnie nie moge siasc do kompa gdzie
+        moglbym to sprawdzic-->
 </body>
 </html>

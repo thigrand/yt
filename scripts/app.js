@@ -19,7 +19,7 @@ angular
     'ngSanitize',
     'ngTouch',
     'LocalStorageModule',
-    'ngDraggable',
+    'angular-sortable-view',
 
   ])
   .config(function ($routeProvider) {
