@@ -1,13 +1,15 @@
 'use strict';
 function storage(localStorageService) {
 
+	var numbersComparator = function (a, b) {
+	    return a - b
+	}
 	var getIdsFromStorage = function () {
 		//wez wszystkie elementy ze storage i przypisz do nowej 
 		var idsFromStorage = [];
-		var keysOfStorage = localStorageService.keys();
-
+		var keysOfStorage = localStorageService.keys().sort(numbersComparator);
 		//console.log(localStorageService.keys(), "localStorageService.keys()");
-		for(var key in localStorageService.keys()) { //key 
+		for(var key in keysOfStorage) { //key 
 			idsFromStorage.push(localStorageService.get(keysOfStorage[key]));
 			//console.log(localStorageService.get(keysOfStorage[key]), "localStorageService.get(keysOfStorage[key])");
 		}					
@@ -18,6 +20,13 @@ function storage(localStorageService) {
 		return localStorageService.set(key, val);
 	};
 
+	var getLastKeyNumber = function () {
+		var keysOfStorage = localStorageService.keys().sort(numbersComparator);
+		//console.log(keysOfStorage[keysOfStorage.length-1]);
+		return keysOfStorage[keysOfStorage.length-1];
+	}
+
+	this.getLastKeyNumber = getLastKeyNumber;
 	this.getIdsFromStorage = getIdsFromStorage;
 	this.setStorage = setStorage;
 	return this;

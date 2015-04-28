@@ -1,79 +1,35 @@
 <h4>Gallery:</h4>
 
 <ul class="list-inline list-unstyled " sv-root sv-part="videoObjects">
-
-    <li ng-repeat="video in videoObjects" 
-    class=" col-md-3 alert alert-white alert-dismissable"
-    sv-element   
-    > <!--  getArray() -->
-        <!-- <div class=" panel " > -->
-
-            <div class="modal fade" id="myModal-{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg" >
-
-
-                    <div class="modal-content" ng-if="video.entry.media$group.yt$videoid.$t.length === 11">
-                        <div class="modal-header">
-                            <button type="button" class="close close-margin" data-dismiss="modal"><span aria-hidden="true">&times; </span><span class="sr-only">Zamknij </span></button>
-                            <h4 class="modal-title" id="myModalLabel">{{video.entry.title.$t}}</h4>
-                        </div>
-                        <div class="modal-body" >
-        					<iframe id="player" class="center-block" width="640" height="390" 
-        					ng-src="{{baseUrl + video.entry.media$group.yt$videoid.$t | trustAsResourceUrl}}" frameborder="0" allowfullscreen></iframe>
-        					  <br>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
-                        </div>
+    <li ng-repeat="video in currentVideoPage" class=" col-md-3 alert alert-white alert-dismissable" sv-element modal-player="" currentObject="{{video}}" index="{{$index}}">
+        <div class="modal fade" id="myModal-{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close close-margin" data-dismiss="modal"><span aria-hidden="true">&times; </span><span class="sr-only">Zamknij </span></button>
+                        <h4 class="modal-title" id="myModalLabel">{{video.name}}</h4>
                     </div>
-
-                    <div class="modal-content" ng-if="video[0]">
-                        <div class="modal-header">
-                            <button type="button" class="close close-margin" data-dismiss="modal"><span aria-hidden="true">&times; </span><span class="sr-only">Zamknij </span></button>
-                            <h4 class="modal-title" id="myModalLabel">{{video[0].title}}</h4>
-                        </div>
-                        <div class="modal-body" >
-                            <iframe ng-src="{{baseUrlVimeo + video[0].id | trustAsResourceUrl}}" class="center-block" width="640" height="390" ></iframe>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
-                        </div> 
+                    <div class="modal-body">
+                        <iframe ng-src="{{video.playerUrl | trustAsResourceUrl}}" class="center-block" width="640" height="390"></iframe>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
                     </div>
                 </div>
             </div>
-
-            <div ng-if="video.entry.media$group.yt$videoid.$t.length === 11">
-                <button type="button" class="close close-margin" data-dismiss="alert" aria-label="Close" aria-hidden="true" ng-click="closeBox($index);">&times;</button>
-                <div class="col-md-12" >
-                    <img ng-src="{{video.entry.media$group.media$thumbnail[3].url}}" class="img-rounded img-thumbnail center-block" modal-player="" data-toggle="modal" data-target="#myModal-{{$index}}">
-
-                </div>
-                <br>
-                <ul class="row-same-height" >
-                    <li><b>Nazwa filmiku:</b> {{video.entry.title.$t}}</li>
-                    <li><b>Który obejrzano:</b> {{video.entry.yt$statistics.viewCount}} razy</li>
-                    <li><b>I polubiono:</b> {{video.entry.yt$rating.numLikes}} razy</li>
-<!-- <button type="button"  ng-click="passToModal(video, $index);">index</button> -->
-                    
-
-                </ul>
+        </div>
+        <div>
+            <button type="button" class="close close-margin" data-dismiss="alert" aria-label="Close" aria-hidden="true" ng-click="closeBox($index);">&times;</button>
+            <div class="col-md-12">
+                <img ng-src="{{video.thumbnail}}" class="img-rounded img-thumbnail center-block" data-toggle="modal" data-target="#myModal-{{$index}}">
             </div>
-            <div ng-if="video[0]">
-                <button type="button" class="close close-margin" data-dismiss="alert" aria-label="Close" aria-hidden="true" ng-click="closeBox($index);">&times;</button>
-                <div class="col-md-12" >
-                    <img ng-src="{{video[0].thumbnail_medium}}" class="img-rounded img-thumbnail center-block" modal-player="" data-toggle="modal" data-target="#myModal-{{$index}}">
-
-                </div>
-                <br>
-                <ul class="row-same-height" >
-                    <li><b>Nazwa filmiku:</b> {{video[0].title}}</li>
-                    <li><b>Który obejrzano:</b> {{video[0].stats_number_of_plays}} razy</li>
-                    <li><b>I polubiono:</b> {{video[0].stats_number_of_likes}} razy</li>
-
-                </ul>
-            </div>
-        <!-- </div> -->
-
-
+            <br>
+            <ul class="row-same-height">
+                <li><b>Nazwa filmiku:</b> {{video.name}}</li>
+                <li><b>Który obejrzano:</b> {{video.viewCount}} razy</li>
+                <li><b>I polubiono:</b> {{video.likesCount}} razy</li>
+                <button type="button" ng-click="passToModal(video, $index);">index</button>
+            </ul>
+        </div>
     </li>
 </ul>

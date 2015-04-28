@@ -1,7 +1,7 @@
 'use strict';
 function videoData($http, $q) {
 	// function getDataFromYT(videosID){
-	// 	var deffered = $q.defer();
+	// 	var deferred = $q.defer();
 	// 	var videoObjects = [];
 	// 	console.log(videosID, 'videosID');
 	// 	for(var i = 0; i < videosID.length; i++) {
@@ -9,27 +9,27 @@ function videoData($http, $q) {
 	// 		success(function(data, status, headers, config) {
 	// 			videoObjects.push(JSON.parse(JSON.stringify(data)));
 
-	// 			deffered.resolve(videoObjects);
+	// 			deferred.resolve(videoObjects);
 	// 		}).
 	// 		error(function(data, status, headers, config) {
 	// 			alert("Jakiś błąd pobrania danych");
 	// 		});
 	// 	}
-	// 	return deffered.promise;
+	// 	return deferred.promise;
 	// }
 	var YOUR_API_KEY = 'AIzaSyDEnxwjeXJlBJ5aDvVT1IO5swoHZkl6E9s';
 
 	
 
 	function getDataFromYT(id) {
-	    var deffered = $q.defer();
+	    var deferred = $q.defer();
 	    if(id.length === 11) {
 		    $http.get('https://gdata.youtube.com/feeds/api/videos/'+id+'?v=2&alt=json').
 		 //$http.get('https://www.googleapis.com/youtube/v3/videos?part=id%2C+snippet%2C+player%2C+statistics&id='+id+'&fields=items(id%2Cplayer%2Csnippet%2Cstatistics)&key={'+YOUR_API_KEY+'}'). // https://developers.google.com/youtube/v3/docs/videos/list#try-it
 					success(function(data, status, headers, config) {
 						var videoObject = JSON.parse(JSON.stringify(data));
 						//var videoObject = data;
-						deffered.resolve(videoObject);
+						deferred.resolve(videoObject);
 					}).
 					error(function(data, status, headers, config) {
 						alert("Jakiś błąd pobrania danych z youtube");
@@ -41,7 +41,7 @@ function videoData($http, $q) {
 		   success(function(data, status, headers, config) {
 						var videoObject = JSON.parse(JSON.stringify(data));
 						//var videoObject = data;
-						deffered.resolve(videoObject);
+						deferred.resolve(videoObject);
 					}).
 					error(function(data, status, headers, config) {
 						alert("Jakiś błąd pobrania danych z vimeo");
@@ -49,7 +49,7 @@ function videoData($http, $q) {
 		} 
 
 
-	    return deffered.promise;
+	    return deferred.promise;
 	}
 
 
