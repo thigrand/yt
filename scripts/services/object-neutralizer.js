@@ -1,5 +1,4 @@
 'use strict';
-
 function objectNeutralizer() {
 
 	var transformVimeoObject = function(videoObject) {
@@ -18,22 +17,22 @@ function objectNeutralizer() {
 	var transformYouTubeObject = function(videoObject) {
 		var simpleObject = {};
 		simpleObject.source = 'youtube';
-		simpleObject.id = videoObject.entry.media$group.yt$videoid.$t;
-		simpleObject.name = videoObject.entry.title.$t;
-		simpleObject.viewCount = videoObject.entry.yt$statistics.viewCount;
-		simpleObject.likesCount = videoObject.entry.yt$rating.numLikes;
-		simpleObject.thumbnail = videoObject.entry.media$group.media$thumbnail[3].url;
+		simpleObject.id = videoObject.items[0].id;
+		simpleObject.name = videoObject.items[0].snippet.title;
+		simpleObject.viewCount = videoObject.items[0].statistics.viewCount;
+		simpleObject.likesCount = videoObject.items[0].statistics.likeCount;
+		simpleObject.thumbnail = videoObject.items[0].snippet.thumbnails.standard.url;
 		simpleObject.baseUrl = 'http://www.youtube.com/embed/';
-		simpleObject.playerUrl = 'http://www.youtube.com/embed/' + videoObject.entry.media$group.yt$videoid.$t;
+		simpleObject.playerUrl = 'http://www.youtube.com/embed/' + videoObject.items[0].id;
 
 		return simpleObject;
 	};
 	var getData = function(data) {
 			// videoData.getData(ytUrlIds).then(function(data) {
 			var arrayOfVideosObjects = [];
-			// console.log(data);
 			for (var i = 0; i < data.length; i++) {
-				if (data[i].entry) {
+				console.log(data[i]);
+				if (data[i].pageInfo) {
 					arrayOfVideosObjects.push(transformYouTubeObject(data[i]));
 				} else {
 					arrayOfVideosObjects.push(transformVimeoObject(data[i]));

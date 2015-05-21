@@ -1,6 +1,6 @@
 <h4>Gallery:</h4>
 
-<ul class="list-inline list-unstyled " sv-root sv-part="videoObjects">
+<ul class="list-inline list-unstyled " sv-root sv-part="videoObjects" id="gall">
     <li ng-repeat="video in currentVideoPage" class=" col-md-3 alert alert-white alert-dismissable" sv-element modal-player="" currentObject="{{video}}" index="{{$index}}">
         <div class="modal fade" id="myModal-{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -19,17 +19,16 @@
             </div>
         </div>
         <div>
-            <button type="button" class="close close-margin" data-dismiss="alert" aria-label="Close" aria-hidden="true" ng-click="closeBox($index);">&times;</button>
-            <div class="col-md-12">
+            <button type="button" class="close close-margin" data-dismiss="alert" aria-label="Close" aria-hidden="true" ng-click="closeBox($index);" id="closebox">&times;</button>
+            <div class="col-md-12" id="thumbnail">
                 <img ng-src="{{video.thumbnail}}" class="img-rounded img-thumbnail center-block" data-toggle="modal" data-target="#myModal-{{$index}}">
             </div>
             <br>
-            <ul class="row-same-height">
-                <li><b>Nazwa filmiku:</b> {{video.name}}</li>
-                <li><b>Który obejrzano:</b> {{video.viewCount}} razy</li>
-                <li><b>I polubiono:</b> {{video.likesCount}} razy</li>
-                <button type="button" ng-click="passToModal(video, $index);">index</button>
-            </ul>
+            <ul class="row-same-height" id="video-data">
+                <li><b>Nazwa filmiku:</b> <span>{{video.name}}</span></li>
+                <li><b>Który obejrzano:</b> <span>{{video.viewCount}}</span> razy</li>
+                <li><b>I polubiono:</b> <span>{{video.likesCount}}</span> razy</li>
+           </ul>
         </div>
     </li>
 </ul>
