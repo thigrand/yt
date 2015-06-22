@@ -13,7 +13,7 @@ describe("Unit: Testing checkAnchor factory", function() {
 
     expect(checkAnchor.takeIdFromUrl).not.to.equal(null);
     expect(checkAnchor.checkUrl).not.to.equal(null);
-  }));
+  }]));
 
 
   it('checkAnchor should contain an takeIdFromUrl and checkUrl function',
@@ -21,7 +21,7 @@ describe("Unit: Testing checkAnchor factory", function() {
 
     expect(checkAnchor.takeIdFromUrl).not.to.equal(null);
     expect(checkAnchor.checkUrl).not.to.equal(null);
-  }));
+  }]));
 
   var exampleUrl1 = 'https://www.youtube.com/watch?v=4JOAqRS_lms';
   var exampleUrl2 = 'https://youtu.be/vJ3a_AuEW18';
@@ -40,7 +40,7 @@ describe("Unit: Testing checkAnchor factory", function() {
     expect(checkAnchor.checkUrl(exampleUrl4)).to.equal("80523173");
     expect(checkAnchor.checkUrl(exampleUrl5)).to.equal("124740781");
     expect(checkAnchor.checkUrl(exampleUrl6)).to.equal(-1);
-  }));
+  }]));
 
 
   it('should get url and return video ID or "-1" when url was incorrect',

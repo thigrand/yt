@@ -12,7 +12,7 @@ describe("Unit: Testing pagination factory", function() {
     inject(['pagination', function(pagination) {
 
     expect(pagination.getArrayForView).not.to.equal(null);
-  }));
+  }]));
 
   it('should return array of objects for one page (10 elements)',
     inject(['pagination', function(pagination) {
@@ -27,7 +27,7 @@ describe("Unit: Testing pagination factory", function() {
     expect(arrayForView.length).to.have.length(6);
 
 
-  }));
+  }]));
 
 
 });

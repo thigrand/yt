@@ -15,9 +15,12 @@ describe("Unit: Testing objectNeutralizer factory", function() {
     expect(objectNeutralizer.transformYouTubeObject).not.to.equal(null);
     expect(objectNeutralizer.getData).not.to.equal(null);
     
-  }));
+  }]));
     var videoObject1 = {},
-        videoObject2.entry = {};
+        videoObject2 = {};
+    videoObject1["0"] = {};
+    videoObject2.entry = {};
+
 
     videoObject1[0].id = 11111111;
     videoObject1[0].title = "title";
@@ -44,7 +47,7 @@ describe("Unit: Testing objectNeutralizer factory", function() {
     expect(objectNeutralizer.transformVimeoObject(videoObject1).thumbnail).to.equal("picture");
     expect(objectNeutralizer.transformVimeoObject(videoObject1).baseUrl).to.equal("https://player.vimeo.com/video/");
     expect(objectNeutralizer.transformVimeoObject(videoObject1).playerUrl).to.equal("https://player.vimeo.com/video/11111111");
-  }));
+  }]));
 
   it('should return neutralized object from youtube ',
     inject(['objectNeutralizer', function(objectNeutralizer) {
@@ -57,7 +60,7 @@ describe("Unit: Testing objectNeutralizer factory", function() {
     expect(objectNeutralizer.transformVimeoObject(videoObject2).thumbnail).to.equal("picture");
     expect(objectNeutralizer.transformVimeoObject(videoObject2).baseUrl).to.equal("http://www.youtube.com/embed/");
     expect(objectNeutralizer.transformVimeoObject(videoObject2).playerUrl).to.equal("http://www.youtube.com/embed/22222222222");
-  }));
+  }]));
 
 
   it('should return an array of ',
