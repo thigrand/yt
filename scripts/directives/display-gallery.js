@@ -1,13 +1,13 @@
 'use strict';
 
-function displayGallery(storage, checkAnchor, localStorageService, pagination, videoData, objectNeutralizer) {
+function displayGallery(storage, checkAnchor, localStorageService, pagination, videoData, objectNeutralizer, videoData2) {
 	return {
 		templateUrl: 'views/gallery.html',
 		link: function($scope) {
-			$scope.cleare = function() {
-				localStorageService.clearAll();
-				console.log(localStorageService.keys(), 'local storage keys'); //do czyszczenia storage w okresie dev. 
-			};
+			// $scope.cleare = function() {
+			// 	localStorageService.clearAll();
+			// 	console.log(localStorageService.keys(), 'local storage keys'); //do czyszczenia storage w okresie dev. 
+			// };
 			$scope.ytUrl = ''; //take value from input
 			$scope.ytUrlIds = storage.getIdsFromStorage();
 			$scope.videoObjects = [];
@@ -16,8 +16,9 @@ function displayGallery(storage, checkAnchor, localStorageService, pagination, v
 			var getData = function() {
 				videoData.getData($scope.ytUrlIds).then(function(data) {
 					$scope.videoObjects = objectNeutralizer.getData(data);
-					$scope.currentVideoPage = pagination.getArrayForView($scope.videoObjects, currentPage);
-					console.log($scope.videoObjects);
+					$scope.currentVideoPage = pagination.getArrayForView($scope.videoObjects, currentPage);// || objectNeutralizer.getData(data);
+					//console.log($scope.videoObjects);
+					//console.log($scope.currentVideoPage);
 				});
 			};
 			getData();
@@ -37,7 +38,7 @@ function displayGallery(storage, checkAnchor, localStorageService, pagination, v
 					storage.setStorage($scope.lastLsNumber++, idFromUrl);
 					getData();
 				} else {
-					alert('Cebuuula normalnie, buractwo');
+					alert('Błędny adres linka.');
 				}
 			};
 
@@ -59,7 +60,11 @@ function displayGallery(storage, checkAnchor, localStorageService, pagination, v
 					$scope.currentVideoPage = pagination.getArrayForView($scope.videoObjects, currentPage);
 				}
 			};
+			videoData2.getData($scope.ytUrlIds);
 		}
 	};
 }
-angular.module('ytApp').directive('displayGallery', ['storage', 'checkAnchor', 'localStorageService', 'pagination', 'videoData', 'objectNeutralizer', displayGallery]);
+angular
+	.module('ytApp')
+	.directive('displayGallery'
+		,['storage', 'checkAnchor', 'localStorageService', 'pagination', 'videoData', 'objectNeutralizer', 'videoData2', displayGallery]);

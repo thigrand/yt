@@ -8,6 +8,9 @@
  *
  * Main module of the application.
  */
+angular.module('youtubeModule',[]);
+angular.module('vimeoModule',[]);
+
 angular
   .module('ytApp', [
     'ngAnimate',
@@ -15,24 +18,22 @@ angular
     'ngCookies',
     'ngMessages',
     'ngResource',
-    'ngRoute',
+    'ui.router',
     'ngSanitize',
     'ngTouch',
     'LocalStorageModule',
     'angular-sortable-view',
+    'youtubeModule',
+    'vimeoModule',
 
   ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
+  .config(function ($stateProvider) {
+    $stateProvider
+      .state('/home', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      // .when('/about', {
-      //   templateUrl: 'views/about.html',
-      //   controller: 'AboutCtrl'
-      // })
-      .otherwise({
-        redirectTo: '/'
+        onEnter: function() {
+          console.log("pozdrawiam")
+
+        }
       });
   });

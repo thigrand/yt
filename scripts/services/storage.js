@@ -26,9 +26,10 @@ function storage(localStorageService) {
 		return keysOfStorage[keysOfStorage.length-1];
 	}
 
-	this.getLastKeyNumber = getLastKeyNumber;
-	this.getIdsFromStorage = getIdsFromStorage;
-	this.setStorage = setStorage;
-	return this;
+	return {
+		getLastKeyNumber : getLastKeyNumber,
+		getIdsFromStorage : getIdsFromStorage,
+		setStorage : setStorage
+	}
 }
 angular.module('ytApp').factory('storage', ['localStorageService', storage]);

@@ -13,6 +13,7 @@
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
+    
     <!-- endbuild -->
   </head>
   <body ng-app="ytApp">
@@ -23,7 +24,8 @@
     <!-- Add your site or application content here -->
     <div class="header">
 
-      <div ng-view=""></div>
+      <div ui-view>Test</div>
+      <!-- <ui-view>test</ui-view> -->
 
     </div>
 
@@ -78,7 +80,7 @@
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-messages/angular-messages.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
@@ -97,16 +99,23 @@
 
         <script src="scripts/services/storage.js"></script>
         <script src="https://apis.google.com/js/client.js?onload=ytAPI"></script>
-        <script src="scripts/services/vimeo-api.js"></script>
+       <!--  // <script src="scripts/services/vimeo-api.js"></script> -->
 
         <script src="scripts/services/object-neutralizer.js"></script>
-        <script src="scripts/services/video-data.js"></script>
+        <script src="scripts/services/video-data.js"></script>  
+        <script src="scripts/services/strategy.js"></script>
 
-
-        
-        <script src="scripts/services/check-url.js"></script>
+        <script src="scripts/services/data-from-vimeo.js"></script>
+        <script src="scripts/services/data-from-yt.js"></script>   
+         <!-- <script src="scripts/services/add-video.js"></script>   -->
 
         <script src="scripts/controllers/main-controller.js"></script>
+        
+
+
+        <script src="scripts/services/check-url.js"></script>
+
+        
         
 
 

@@ -35,7 +35,7 @@ function checkAnchor() {
 		if(url.length >= 11 && url.substring(0, 24) === "https://www.youtube.com/") {
 			goodUrl = takeIdFromUrl(url, 3);
 		}
-		if((url.length === 9 || url.length === 8) && reg.test(url)) {
+		if((url.length < 11) && reg.test(url)) {//vimeoid
 			goodUrl = url;
 		}
 		if(url.length >= 11 && url.substring(0, 18) === "https://vimeo.com/") {
@@ -54,7 +54,9 @@ function checkAnchor() {
 	// 	<a href="https://vimeo.com">Vimeo</a>.
 	// </p>
 
-	this.checkUrl = checkUrl;
-	return this;
+
+	return {
+		checkUrl : checkUrl
+	}
 }
 angular.module('ytApp').factory('checkAnchor', [ checkAnchor]);

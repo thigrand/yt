@@ -33,9 +33,8 @@ function pagination(videoData) {
 		return arrayForView;
 	}	
 
-
-
-	this.getArrayForView = getArrayForView;
-	return this;
+	return {
+		getArrayForView: getArrayForView
+	}
 }
 angular.module('ytApp').factory('pagination', ['videoData', pagination]);

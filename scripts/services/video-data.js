@@ -26,12 +26,12 @@ function videoData($http, $q) {
 						deferred.resolve(videoObject);
 					}).
 					error(function(data) {
-						alert("Jakiś błąd pobrania danych z youtube");
+						alert('Jakiś błąd pobrania danych z youtube');
 					});
 		}
 		if(id.length === 9 || id.length === 9) {
 
-		   $http.jsonp('http://vimeo.com/api/v2/video/'+id+'.json?callback=JSON_CALLBACK&_=' + (new Date().getTime())).//https://api.vimeo.com/'+id+'').
+		   $http.jsonp('http://vimeo.com/api/v2/video/'+id+".json?callback=JSON_CALLBACK").//'https://api.vimeo.com/'+id+'').//.json?callback=JSON_CALLBACK&_=' + (new Date().getTime())
 		   success(function(data) {
 						var videoObject = JSON.parse(JSON.stringify(data));
 						// console.log(data);
@@ -39,7 +39,7 @@ function videoData($http, $q) {
 						deferred.resolve(videoObject);
 					}).
 					error(function(data, status, headers, config) {
-						alert("Jakiś błąd pobrania danych z vimeo");
+						alert('Jakiś błąd pobrania danych z vimeo');
 					});
 		} 
 
@@ -58,8 +58,9 @@ function videoData($http, $q) {
 		return $q.all(videoObjects);
 	}
 
-	this.getData = getData;
-	return this;
+	return {
+		getData: getData
+	}
 }
 angular.module('ytApp').factory('videoData', ['$http', '$q', videoData]);
 

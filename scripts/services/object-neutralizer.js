@@ -1,7 +1,7 @@
 'use strict';
 function objectNeutralizer() {
 
-	var transformVimeoObject = function(videoObject) {
+	function transformVimeoObject(videoObject) {
 		var simpleObject = {};
 		simpleObject.source = 'vimeo';
 		simpleObject.id = videoObject[0].id;
@@ -14,7 +14,7 @@ function objectNeutralizer() {
 
 		return simpleObject;
 	};
-	var transformYouTubeObject = function(videoObject) {
+	function transformYouTubeObject(videoObject) {
 		var simpleObject = {};
 		simpleObject.source = 'youtube';
 		simpleObject.id = videoObject.items[0].id;
@@ -27,11 +27,12 @@ function objectNeutralizer() {
 
 		return simpleObject;
 	};
-	var getData = function(data) {
+	function getData(data) {
 			// videoData.getData(ytUrlIds).then(function(data) {
+				//console.log(data);
 			var arrayOfVideosObjects = [];
 			for (var i = 0; i < data.length; i++) {
-				console.log(data[i]);
+				//console.log(data[i]);
 				if (data[i].pageInfo) {
 					arrayOfVideosObjects.push(transformYouTubeObject(data[i]));
 				} else {
@@ -54,7 +55,10 @@ function objectNeutralizer() {
 		// 	return neutralized;
 		// }
 		// this.neutralizeObject = neutralizeObject;
-	this.getData = getData;
-	return this;
+	return {
+		getData: getData,
+		transformYouTubeObject: transformYouTubeObject,
+		transformVimeoObject: transformVimeoObject
+	}
 }
 angular.module('ytApp').factory('objectNeutralizer', [objectNeutralizer]);
