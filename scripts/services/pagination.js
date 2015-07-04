@@ -31,10 +31,10 @@ function pagination(videoData) {
 		arrayForView = arrayOfAllVideos.slice(iterateFrom, iterateTo);
 
 		return arrayForView;
-	}	
+	};
 
 	return {
 		getArrayForView: getArrayForView
-	}
+	};
 }
 angular.module('ytApp').factory('pagination', ['videoData', pagination]);

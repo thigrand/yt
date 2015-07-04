@@ -8,11 +8,14 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <!-- endbower -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
+        <!-- <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"> -->
     <link rel="stylesheet" href="styles/main.css">
+
+
     
     <!-- endbuild -->
   </head>
@@ -29,29 +32,29 @@
 
     </div>
 
-    <div class="container" ng-contoller="MainCtrl">
+    <div class="container" ng-contoller="videoCaster as vidcast">
 
 
       <div class="row panel" id="inputRow">
-          <form ng-submit="addVideo()">
-            <input id="link-taker" type="text" name="input" ng-model="ytUrl" ng-trim="false" ></input>
+          <form ng-submit="vidcast.addVideo()">
+            <input id="link-taker" type="text" name="input" ng-model="vidcast.ytUrl" ng-trim="false" ></input>
             <input id="submit" type="submit" value="Add" ></input>
           </form>
       </div>
-      <button ng-click="cleare()">clear</button>
+      <!-- <button ng-click="cleare()">clear</button> -->
 
       <div display-gallery="" class="row jumbotron" id="gallery" >
       </div>
       
       <div class="row" id="pagination">
         <ul class="pager">
-          <li ><a href="" id="dec-butt" ng-click="decrementPage()" >Poprzednia strona</a></li>
-          <li><a href="" id="inc-butt" ng-click="incrementPage()" >Następna strona</a></li>
+          <li ><a href="" id="dec-butt" ng-click="vidcast.decrementPage()" >Poprzednia strona</a></li>
+          <li><a href="" id="inc-butt" ng-click="vidcast.incrementPage()" >Następna strona</a></li>
         </ul> 
 
       </div> 
       
-      <pager total-items="pagesAmount" ng-model="currentPage"></pager>
+      <pager total-items="pagesAmount" ng-model="vidcast.currentPage"></pager>
     </div>
 
     <div class="footer" id="results">
@@ -110,7 +113,7 @@
          <!-- <script src="scripts/services/add-video.js"></script>   -->
 
         <script src="scripts/controllers/main-controller.js"></script>
-        
+        <script src="scripts/controllers/video-caster.js"></script>
 
 
         <script src="scripts/services/check-url.js"></script>

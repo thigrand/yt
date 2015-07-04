@@ -21,16 +21,16 @@ function dataFromYT($http, $q) {
 	}
 	
 	function transformYouTubeObject(videoObject) {
-		var simpleObject = {};
-		simpleObject.source = 'youtube';
-		simpleObject.id = videoObject.items[0].id;
-		simpleObject.name = videoObject.items[0].snippet.title;
-		simpleObject.viewCount = videoObject.items[0].statistics.viewCount;
-		simpleObject.likesCount = videoObject.items[0].statistics.likeCount;
-		simpleObject.thumbnail = videoObject.items[0].snippet.thumbnails.standard.url;
-		simpleObject.baseUrl = 'http://www.youtube.com/embed/';
-		simpleObject.playerUrl = 'http://www.youtube.com/embed/' + videoObject.items[0].id;
-
+		var simpleObject = {
+			source : 'youtube',
+			id : videoObject.items[0].id,
+			name : videoObject.items[0].snippet.title,
+			viewCount : videoObject.items[0].statistics.viewCount,
+			likesCount : videoObject.items[0].statistics.likeCount,
+			thumbnail : videoObject.items[0].snippet.thumbnails.standard.url,
+			baseUrl : 'http://www.youtube.com/embed/',
+			playerUrl : 'http://www.youtube.com/embed/' + videoObject.items[0].id
+		}
 		return simpleObject;
 	};
 	return {

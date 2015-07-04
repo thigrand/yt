@@ -2,29 +2,29 @@
 function objectNeutralizer() {
 
 	function transformVimeoObject(videoObject) {
-		var simpleObject = {};
-		simpleObject.source = 'vimeo';
-		simpleObject.id = videoObject[0].id;
-		simpleObject.name = videoObject[0].title;
-		simpleObject.viewCount = videoObject[0].stats_number_of_plays;
-		simpleObject.likesCount = videoObject[0].stats_number_of_likes;
-		simpleObject.thumbnail = videoObject[0].thumbnail_medium;
-		simpleObject.baseUrl = 'https://player.vimeo.com/video/';
-		simpleObject.playerUrl = 'https://player.vimeo.com/video/' + videoObject[0].id;
-
+		var simpleObject = {
+			source : 'vimeo',
+			id : videoObject[0].id,
+			name : videoObject[0].title,
+			viewCount : videoObject[0].stats_number_of_plays,
+			likesCount : videoObject[0].stats_number_of_likes,
+			thumbnail : videoObject[0].thumbnail_medium,
+			baseUrl : 'https://player.vimeo.com/video/',
+			playerUrl : 'https://player.vimeo.com/video/' + videoObject[0].id
+		};
 		return simpleObject;
-	};
+	}
 	function transformYouTubeObject(videoObject) {
-		var simpleObject = {};
-		simpleObject.source = 'youtube';
-		simpleObject.id = videoObject.items[0].id;
-		simpleObject.name = videoObject.items[0].snippet.title;
-		simpleObject.viewCount = videoObject.items[0].statistics.viewCount;
-		simpleObject.likesCount = videoObject.items[0].statistics.likeCount;
-		simpleObject.thumbnail = videoObject.items[0].snippet.thumbnails.standard.url;
-		simpleObject.baseUrl = 'http://www.youtube.com/embed/';
-		simpleObject.playerUrl = 'http://www.youtube.com/embed/' + videoObject.items[0].id;
-
+		var simpleObject = {
+			source : 'youtube',
+			id : videoObject.items[0].id,
+			name : videoObject.items[0].snippet.title,
+			viewCount : videoObject.items[0].statistics.viewCount,
+			likesCount : videoObject.items[0].statistics.likeCount,
+			thumbnail : videoObject.items[0].snippet.thumbnails.standard.url,
+			baseUrl : 'http://www.youtube.com/embed/',
+			playerUrl : 'http://www.youtube.com/embed/' + videoObject.items[0].id
+		};
 		return simpleObject;
 	};
 	function getData(data) {

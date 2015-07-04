@@ -2,8 +2,8 @@
 function storage(localStorageService) {
 
 	var numbersComparator = function (a, b) {
-	    return a - b
-	}
+	    return a - b;
+	};
 	var getIdsFromStorage = function () {
 		//wez wszystkie elementy ze storage i przypisz do nowej 
 		var idsFromStorage = [];
@@ -24,12 +24,12 @@ function storage(localStorageService) {
 		var keysOfStorage = localStorageService.keys().sort(numbersComparator);
 		//console.log(keysOfStorage[keysOfStorage.length-1]);
 		return keysOfStorage[keysOfStorage.length-1];
-	}
+	};
 
 	return {
 		getLastKeyNumber : getLastKeyNumber,
 		getIdsFromStorage : getIdsFromStorage,
 		setStorage : setStorage
-	}
+	};
 }
 angular.module('ytApp').factory('storage', ['localStorageService', storage]);

@@ -29,11 +29,9 @@ angular
   ])
   .config(function ($stateProvider) {
     $stateProvider
-      .state('/home', {
-        templateUrl: 'views/main.html',
-        onEnter: function() {
-          console.log("pozdrawiam")
+      .state('index', {
+        url:"",
+        templateUrl: 'views/main.html'
 
-        }
       });
   });
