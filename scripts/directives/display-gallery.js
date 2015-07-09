@@ -3,9 +3,21 @@
 function displayGallery(storage, checkAnchor, localStorageService, pagination, videoData, objectNeutralizer) {
 	return {
 		templateUrl: 'views/gallery.html',
-		bindToController: true,
+		scope: {
+			ytUrl: "=",
+			ytUrlIds: "=",
+			videoObject: "=",
+			currentVideoPage: "="
+		},
+		bindToController: {
+			ytUrl: "=",
+			ytUrlIds: "=",
+			videoObject: "=",
+			currentVideoPage: "="
+		},
 		controller:  'videoCaster as vidcast', 
 		link: function($scope) {
+			
 			// $scope.cleare = function() {
 			// 	localStorageService.clearAll();
 			// 	console.log(localStorageService.keys(), 'local storage keys'); //do czyszczenia storage w okresie dev. 

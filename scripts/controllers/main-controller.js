@@ -7,9 +7,59 @@
  * # MainCtrl
  * Controller of the ytApp
  */
-function MainCtrl($scope, $http, videoData, storage, videoData2, checkAnchor) {
+function MainCtrl(objectNeutralizer, videoData, storage, videoData2, checkAnchor, pagination, $scope) {
+
+
+	var main = this;
+	main.ytUrl = ''; //take value from input
+	main.ytUrlIds = storage.getIdsFromStorage();
+	main.videoObjects = [];
+	main.currentVideoPage = [];
+
+console.log(main.ytUrlIds);
+
+	var getData = function() {
+		videoData.getData(main.ytUrlIds).then(function(data) {
+			main.videoObjects = objectNeutralizer.getData(data);
+			main.currentVideoPage = pagination.getArrayForView(main.videoObjects, currentPage);// || objectNeutralizer.getData(data);
+			// console.log(main.videoObjects);
+			// console.log( main.currentVideoPage);
+		});
+	};
+	getData();
+
+var currentPage = 0;
+	main.lastLsNumber = 1 + Number(storage.getLastKeyNumber()) || 1;
+	main.addVideo = function() {
+		console.log("start");
+		var idFromUrl = checkAnchor.checkUrl(main.ytUrl);
+		console.log(main.ytUrlIds.length);
+		if (idFromUrl !== -1) {
+			main.ytUrlIds.push(idFromUrl);
+			storage.setStorage(main.lastLsNumber++, idFromUrl);
+
+			getData();
+			
+			console.log("ogarniam film");
+		} else {
+			alert('Błędny adres linka.');
+			console.log("błąd");
+		}
+		console.log("koniec");
+		console.log(main.ytUrlIds.length);
+	};
+	$scope.$watch( 'expr' , function(newVal, oldVal, scope) {
+	 if (newVal !== oldVal) {
+	 // Let's set up our parseFun with the expression
+	 var parseFun = $parse(newVal);
+	// Get the value of the parsed expression
+	$scope.parsedValue = parseFun(scope);
+	 }
+	 });
 
 }
-angular.module('ytApp').controller('MainCtrl', ['$scope', '$http', 'videoData', 'storage', 'videoData2', 'checkAnchor',  MainCtrl])
+angular
+.module('ytApp')
+.controller('MainCtrl', ['objectNeutralizer', 'videoData', 'storage', 'videoData2', 'checkAnchor', 'pagination', "$scope", MainCtrl]);
 // angular.module('ytApp').controller('MainCtrl', ['$scope', '$log',  MainCtrl]);
 

@@ -11,10 +11,10 @@ function videoCaster( $http, videoData, storage, videoData2, checkAnchor, object
 // function MainCtrl($vidcast, $log) {
 	var vidcast = this;
 	vidcast.ytUrl = ''; //take value from input
-	vidcast.ytUrlIds = storage.getIdsFromStorage();
+	vidcast.ytUrlIds = storage.getIdsFromStorage() || "bamboocha";
 	vidcast.videoObjects = [];
 	vidcast.currentVideoPage = [];
-	//vidcast.tekst = "tekst";
+	
 
  	// videoData2.getData(vidcast.ytUrlIds); 
 
@@ -37,25 +37,25 @@ function videoCaster( $http, videoData, storage, videoData2, checkAnchor, object
 	var numbersComparator = function(a, b) {
 		return a - b;
 	};
-	vidcast.lastLsNumber = 1 + Number(storage.getLastKeyNumber()) || 1;
-	vidcast.addVideo = function() {
-		console.log("start");
-		var idFromUrl = checkAnchor.checkUrl(vidcast.ytUrl);
-		console.log(vidcast.ytUrlIds.length);
-		if (idFromUrl !== -1) {
-			vidcast.ytUrlIds.push(idFromUrl);
-			storage.setStorage(vidcast.lastLsNumber++, idFromUrl);
+	// vidcast.lastLsNumber = 1 + Number(storage.getLastKeyNumber()) || 1;
+	// vidcast.addVideo = function() {
+	// 	console.log("start");
+	// 	var idFromUrl = checkAnchor.checkUrl(vidcast.ytUrl);
+	// 	console.log(vidcast.ytUrlIds.length);
+	// 	if (idFromUrl !== -1) {
+	// 		vidcast.ytUrlIds.push(idFromUrl);
+	// 		storage.setStorage(vidcast.lastLsNumber++, idFromUrl);
 
-			getData();
+	// 		getData();
 			
-			console.log("ogarniam film");
-		} else {
-			alert('Błędny adres linka.');
-			console.log("błąd");
-		}
-		console.log("koniec");
-		console.log(vidcast.ytUrlIds.length);
-	};
+	// 		console.log("ogarniam film");
+	// 	} else {
+	// 		alert('Błędny adres linka.');
+	// 		console.log("błąd");
+	// 	}
+	// 	console.log("koniec");
+	// 	console.log(vidcast.ytUrlIds.length);
+	// };
 
 	var currentPage = 0;
 	var videosAmount = vidcast.ytUrlIds.length;

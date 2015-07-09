@@ -31,30 +31,34 @@
       <!-- <ui-view>test</ui-view> -->
 
     </div>
-
-    <div class="container" ng-contoller="videoCaster as vidcast">
+    <div ng-controller="test as test"></div>
+    <div  ng-controller="MainCtrl as main" class="container">
 
 
       <div class="row panel" id="inputRow">
-          <form ng-submit="vidcast.addVideo()">
-            <input id="link-taker" type="text" name="input" ng-model="vidcast.ytUrl" ng-trim="false" ></input>
+          <form ng-submit="main.addVideo()">
+            <input id="link-taker" type="text" name="input" ng-model="main.ytUrl" ng-trim="false" ></input>
             <input id="submit" type="submit" value="Add" ></input>
           </form>
       </div>
       <!-- <button ng-click="cleare()">clear</button> -->
 
-      <div display-gallery="" class="row jumbotron" id="gallery" >
+      <div  display-gallery="" 
+            class="row jumbotron" id="gallery" 
+            yt-url-ids="main.ytUrlIds"
+            yt-url="main.ytUrl"
+            current-video-page="main.currentVideoPage">
       </div>
       
       <div class="row" id="pagination">
         <ul class="pager">
-          <li ><a href="" id="dec-butt" ng-click="vidcast.decrementPage()" >Poprzednia strona</a></li>
-          <li><a href="" id="inc-butt" ng-click="vidcast.incrementPage()" >Następna strona</a></li>
+          <li ><a href="" id="dec-butt" ng-click="main.decrementPage()" >Poprzednia strona</a></li>
+          <li><a href="" id="inc-butt" ng-click="main.incrementPage()" >Następna strona</a></li>
         </ul> 
 
       </div> 
       
-      <pager total-items="pagesAmount" ng-model="vidcast.currentPage"></pager>
+      <pager total-items="pagesAmount" ng-model="main.currentPage"></pager>
     </div>
 
     <div class="footer" id="results">
@@ -111,9 +115,11 @@
         <script src="scripts/services/data-from-vimeo.js"></script>
         <script src="scripts/services/data-from-yt.js"></script>   
          <!-- <script src="scripts/services/add-video.js"></script>   -->
-
-        <script src="scripts/controllers/main-controller.js"></script>
         <script src="scripts/controllers/video-caster.js"></script>
+        <script src="scripts/directives/display-gallery.js"></script>
+        <script src="scripts/controllers/main-controller.js"></script>
+        <script src="scripts/controllers/test.js"></script>
+
 
 
         <script src="scripts/services/check-url.js"></script>
@@ -122,7 +128,7 @@
         
 
 
-        <script src="scripts/directives/display-gallery.js"></script>
+
         <script src="scripts/filters/trustAsResourceUrl.js"></script>
 
         <script src="scripts/services/pagination.js"></script>
