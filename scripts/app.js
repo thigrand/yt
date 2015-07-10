@@ -29,9 +29,17 @@ angular
   ])
   .config(function ($stateProvider) {
     $stateProvider
-      .state('index', {
-        url:"",
-        templateUrl: 'views/main.html'
+      .state('home', {
+        url:"/",
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl',
+        controllerAs: 'main'
 
-      });
+      })
+      .state('video-player', {
+        url:"/player",
+        templateUrl: 'views/video-player.html',
+        controller: 'videoCaster',
+        controllerAs: 'vidcast'
+      });;
   });

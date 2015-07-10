@@ -7,17 +7,23 @@
  * # MainCtrl
  * Controller of the ytApp
  */
-function videoCaster( $http, videoData, storage, videoData2, checkAnchor, objectNeutralizer, pagination, localStorageService) {
+function videoCaster( $http, videoData, storage, videoData2, checkAnchor, objectNeutralizer, pagination, localStorageService, $scope) {
 // function MainCtrl($vidcast, $log) {
 	var vidcast = this;
 	vidcast.ytUrl = ''; //take value from input
 	vidcast.ytUrlIds = storage.getIdsFromStorage() || "bamboocha";
 	vidcast.videoObjects = [];
 	vidcast.currentVideoPage = [];
-	
+	// vidcast.videoToPlay = vidcast.play ;
+	vidcast.play = function (url) {
+		vidcast.videoToPlay = url;
+		return url;
+	}
 
  	// videoData2.getData(vidcast.ytUrlIds); 
+ 	$scope.$watch('vidcast.currentVideoPage', function( newValue, oldValue){
 
+ 	})
 
 	var getData = function() {
 		
@@ -83,6 +89,6 @@ function videoCaster( $http, videoData, storage, videoData2, checkAnchor, object
 }
 angular
 	.module('ytApp')
-	.controller('videoCaster', ['$http', 'videoData', 'storage', 'videoData2', 'checkAnchor', 'objectNeutralizer', 'pagination', 'localStorageService', videoCaster]);
+	.controller('videoCaster', ['$http', 'videoData', 'storage', 'videoData2', 'checkAnchor', 'objectNeutralizer', 'pagination', 'localStorageService', '$scope', videoCaster]);
 // angular.module('ytApp').controller('MainCtrl', ['$vidcast', '$log',  MainCtrl]);
 

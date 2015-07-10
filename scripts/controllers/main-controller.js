@@ -18,7 +18,7 @@ function MainCtrl(objectNeutralizer, videoData, storage, videoData2, checkAnchor
 
 console.log(main.ytUrlIds);
 
-	var getData = function() {
+	main.getData = function() {
 		videoData.getData(main.ytUrlIds).then(function(data) {
 			main.videoObjects = objectNeutralizer.getData(data);
 			main.currentVideoPage = pagination.getArrayForView(main.videoObjects, currentPage);// || objectNeutralizer.getData(data);
@@ -26,7 +26,6 @@ console.log(main.ytUrlIds);
 			// console.log( main.currentVideoPage);
 		});
 	};
-	getData();
 
 var currentPage = 0;
 	main.lastLsNumber = 1 + Number(storage.getLastKeyNumber()) || 1;
@@ -38,7 +37,7 @@ var currentPage = 0;
 			main.ytUrlIds.push(idFromUrl);
 			storage.setStorage(main.lastLsNumber++, idFromUrl);
 
-			getData();
+			main.getData();
 			
 			console.log("ogarniam film");
 		} else {

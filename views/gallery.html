@@ -1,17 +1,11 @@
 
-<div ng-controller="videoCaster as vidcast"> 
-<!--     <div class="row " id="inputRow">
-      <form ng-submit="vidcast.addVideo()">
-        <input id="link-taker" type="text" name="input" ng-model="vidcast.ytUrl" ng-trim="false" ></input>
-        <input id="submit" type="submit" value="Add" ></input>
-      </form>
-    </div>
- -->
+<div > 
+
     <h3>Gallery:</h3>
 
     <ul class="list-inline list-unstyled " sv-root sv-part="vidcast.currentVideoPage" id="gall" > <!-- https://github.com/kamilkp/angular-sortable-view -->
         <li ng-repeat="video in vidcast.currentVideoPage track by $index" class=" col-md-3 alert alert-white alert-dismissable" sv-element="opts" currentObject="{{video}}" index="{{$index}}">
-            <div class="modal fade" id="myModal-{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <!--           <div class="modal fade" id="myModal-{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -26,11 +20,14 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div>
                 <button type="button" class="close close-margin" data-dismiss="alert" aria-label="Close" aria-hidden="true" ng-click="vidcast.closeBox($index);" id="closebox">&times;</button>
                 <div class="col-md-12" id="thumbnail">
-                    <img ng-src="{{video.thumbnail}}" class="img-rounded img-thumbnail center-block" data-toggle="modal" data-target="#myModal-{{$index}}">
+                    <img ng-src="{{video.thumbnail}}" class="img-rounded img-thumbnail center-block" 
+                    ng-click="vidcast.play(video.playerUrl)"
+                    ui-sref='video-player'>
+                    <!-- <img ng-src="{{video.thumbnail}}" class="img-rounded img-thumbnail center-block" data-toggle="modal" data-target="#myModal-{{$index}}"> -->
                 </div>
                 <br>
                 <ul class="row-same-height" id="video-data">
@@ -41,15 +38,5 @@
             </div>
         </li>
     </ul>
-<!-- 
-
-    <div class="row" id="pagination">
-        <ul class="pager">
-          <li ><a href="" id="dec-butt" ng-click="vidcast.decrementPage()" >Poprzednia strona</a></li>
-          <li><a href="" id="inc-butt" ng-click="vidcast.incrementPage()" >Następna strona</a></li>
-        </ul> 
-
-      </div> 
-       -->
       <pager total-items="pagesAmount" ng-model="vidcast.currentPage"></pager>
 </div>
