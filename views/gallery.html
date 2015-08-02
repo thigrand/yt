@@ -1,5 +1,5 @@
 
-<div > 
+<div > Karramba2
 
     <h3>Gallery:</h3>
 
@@ -25,8 +25,8 @@
                 <button type="button" class="close close-margin" data-dismiss="alert" aria-label="Close" aria-hidden="true" ng-click="vidcast.closeBox($index);" id="closebox">&times;</button>
                 <div class="col-md-12" id="thumbnail">
                     <img ng-src="{{video.thumbnail}}" class="img-rounded img-thumbnail center-block" 
-                    ng-click="vidcast.play(video.playerUrl)"
-                    ui-sref='video-player'>
+
+                    ui-sref='video-player({ site: video.source, id: video.id })'>
                     <!-- <img ng-src="{{video.thumbnail}}" class="img-rounded img-thumbnail center-block" data-toggle="modal" data-target="#myModal-{{$index}}"> -->
                 </div>
                 <br>

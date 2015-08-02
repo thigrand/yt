@@ -26,7 +26,7 @@ function objectNeutralizer() {
 			playerUrl : 'http://www.youtube.com/embed/' + videoObject.items[0].id
 		};
 		return simpleObject;
-	};
+	}
 	function getData(data) {
 			// videoData.getData(ytUrlIds).then(function(data) {
 				//console.log(data);
@@ -37,7 +37,7 @@ function objectNeutralizer() {
 					arrayOfVideosObjects.push(transformYouTubeObject(data[i]));
 				} else {
 					arrayOfVideosObjects.push(transformVimeoObject(data[i]));
-				};
+				}
 			}
 			// console.log(arrayOfVideosObjects);
 			return arrayOfVideosObjects;
@@ -59,6 +59,6 @@ function objectNeutralizer() {
 		getData: getData,
 		transformYouTubeObject: transformYouTubeObject,
 		transformVimeoObject: transformVimeoObject
-	}
+	};
 }
 angular.module('ytApp').factory('objectNeutralizer', [objectNeutralizer]);

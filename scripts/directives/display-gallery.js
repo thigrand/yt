@@ -4,16 +4,16 @@ function displayGallery(storage, checkAnchor, localStorageService, pagination, v
 	return {
 		templateUrl: 'views/gallery.html',
 		scope: {
-			ytUrl: "=",
-			ytUrlIds: "=",
-			videoObject: "=",
-			currentVideoPage: "="
+			ytUrl: '=',
+			ytUrlIds: '=',
+			videoObject: '=',
+			currentVideoPage: '='
 		},
 		bindToController: {
-			ytUrl: "=",
-			ytUrlIds: "=",
-			videoObject: "=",
-			currentVideoPage: "="
+			ytUrl: '=',
+			ytUrlIds: '=',
+			videoObject: '=',
+			currentVideoPage: '='
 		},
 		controller:  'videoCaster as vidcast', 
 		link: function($scope) {

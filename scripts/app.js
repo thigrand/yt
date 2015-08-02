@@ -30,16 +30,16 @@ angular
   .config(function ($stateProvider) {
     $stateProvider
       .state('home', {
-        url:"/",
+        url:'/',
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
 
       })
       .state('video-player', {
-        url:"/player",
+        url:'/player/:player/:id',
         templateUrl: 'views/video-player.html',
         controller: 'videoCaster',
         controllerAs: 'vidcast'
-      });;
+      });
   });

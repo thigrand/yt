@@ -1,7 +1,7 @@
 'use strict';
 function checkAnchor() {
 	var takeIdFromUrl = function (url, switcher) {
-		var videoId = "";
+		var videoId = '';
 
 		if(switcher === 1) {
 			videoId = url;
@@ -29,16 +29,16 @@ function checkAnchor() {
 		if(url.length === 11) { 
 			goodUrl = url;
 		}
-		if(url.length >= 11 && url.substring(0, 17) === "https://youtu.be/") {
+		if(url.length >= 11 && url.substring(0, 17) === 'https://youtu.be/') {
 			goodUrl = takeIdFromUrl(url, 2);
 		}
-		if(url.length >= 11 && url.substring(0, 24) === "https://www.youtube.com/") {
+		if(url.length >= 11 && url.substring(0, 24) === 'https://www.youtube.com/') {
 			goodUrl = takeIdFromUrl(url, 3);
 		}
 		if((url.length < 11) && reg.test(url)) {//vimeoid
 			goodUrl = url;
 		}
-		if(url.length >= 11 && url.substring(0, 18) === "https://vimeo.com/") {
+		if(url.length >= 11 && url.substring(0, 18) === 'https://vimeo.com/') {
 			goodUrl = takeIdFromUrl(url, 5);
 		}
 
@@ -57,6 +57,6 @@ function checkAnchor() {
 
 	return {
 		checkUrl : checkUrl
-	}
+	};
 }
 angular.module('ytApp').factory('checkAnchor', [ checkAnchor]);

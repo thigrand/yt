@@ -31,7 +31,7 @@ function test( $http, videoData, storage, videoData2, checkAnchor, objectNeutral
 
 	test.lastLsNumber = 1 + Number(storage.getLastKeyNumber()) || 1;
 	test.addVideo = function() {
-		console.log("start");
+		console.log('start');
 		var idFromUrl = checkAnchor.checkUrl(test.ytUrl);
 		console.log(test.ytUrlIds.length);
 		if (idFromUrl !== -1) {
@@ -40,12 +40,12 @@ function test( $http, videoData, storage, videoData2, checkAnchor, objectNeutral
 
 			getData();
 			
-			console.log("ogarniam film");
+			console.log('ogarniam film');
 		} else {
 			alert('Błędny adres linka.');
-			console.log("błąd");
+			console.log('błąd');
 		}
-		console.log("koniec");
+		console.log('koniec');
 		console.log(test.ytUrlIds.length);
 	};
 	

@@ -13,8 +13,8 @@ function dataFromYT($http, $q) {
 				var videoObject = JSON.parse(JSON.stringify(data));
 				deferred.resolve(videoObject);
 			}).
-			error(function(data) {
-				alert("Jakiś błąd pobrania danych z youtube");
+			error(function() {
+				alert('Jakiś błąd pobrania danych z youtube');
 			});
 
 		return deferred.promise;
@@ -30,11 +30,11 @@ function dataFromYT($http, $q) {
 			thumbnail : videoObject.items[0].snippet.thumbnails.standard.url,
 			baseUrl : 'http://www.youtube.com/embed/',
 			playerUrl : 'http://www.youtube.com/embed/' + videoObject.items[0].id
-		}
+		};
 		return simpleObject;
-	};
+	}
 	return {
 		get: get
-	}
+	};
 }
 angular.module('youtubeModule').factory('dataFromYT', ['$http','$q', dataFromYT]);

@@ -14,9 +14,9 @@ function modalPlayer() {
             // console.log(currentobject);
             //console.log(currentObject);
             $scope.test = function() {
-            	console.log("test");
-            }
+            	console.log('test');
+            };
         }
-    }
+    };
 }
 angular.module('ytApp').directive('modalPlayer', [modalPlayer]);

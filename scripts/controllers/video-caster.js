@@ -7,23 +7,32 @@
  * # MainCtrl
  * Controller of the ytApp
  */
-function videoCaster( $http, videoData, storage, videoData2, checkAnchor, objectNeutralizer, pagination, localStorageService, $scope) {
+function videoCaster( $http, videoData, storage, videoData2, checkAnchor, objectNeutralizer, pagination, localStorageService, $scope, $stateParams) {
 // function MainCtrl($vidcast, $log) {
 	var vidcast = this;
 	vidcast.ytUrl = ''; //take value from input
-	vidcast.ytUrlIds = storage.getIdsFromStorage() || "bamboocha";
+	vidcast.ytUrlIds = storage.getIdsFromStorage() ;
 	vidcast.videoObjects = [];
 	vidcast.currentVideoPage = [];
-	// vidcast.videoToPlay = vidcast.play ;
+
+	vidcast.videoToPlay =  urlForPlayer();
 	vidcast.play = function (url) {
 		vidcast.videoToPlay = url;
+		return url;
+	};
+	console.log("helloController");
+	function urlForPlayer () {
+		var url;
+		if($stateParams.site === 'youtube') {
+			url = 'http://www.youtube.com/embed/' + $stateParams.id;
+		} else {
+			url = 'https://player.vimeo.com/video/' + $stateParams.id;
+		}
 		return url;
 	}
 
  	// videoData2.getData(vidcast.ytUrlIds); 
- 	$scope.$watch('vidcast.currentVideoPage', function( newValue, oldValue){
-
- 	})
+ 	
 
 	var getData = function() {
 		
@@ -89,6 +98,6 @@ function videoCaster( $http, videoData, storage, videoData2, checkAnchor, object
 }
 angular
 	.module('ytApp')
-	.controller('videoCaster', ['$http', 'videoData', 'storage', 'videoData2', 'checkAnchor', 'objectNeutralizer', 'pagination', 'localStorageService', '$scope', videoCaster]);
+	.controller('videoCaster', ['$http', 'videoData', 'storage', 'videoData2', 'checkAnchor', 'objectNeutralizer', 'pagination', 'localStorageService', '$scope', '$stateParams', videoCaster]);
 // angular.module('ytApp').controller('MainCtrl', ['$vidcast', '$log',  MainCtrl]);
 

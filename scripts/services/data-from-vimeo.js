@@ -11,8 +11,8 @@ function dataFromVimeo($http, $q) {
 				// console.log(data);
 				deferred.resolve(videoObject);
 			}).
-			error(function(data, status, headers, config) {
-				alert("Jakiś błąd pobrania danych z vimeo");
+			error(function() {
+				alert('Jakiś błąd pobrania danych z vimeo');
 			});
 
 		return deferred.promise;
@@ -20,6 +20,6 @@ function dataFromVimeo($http, $q) {
 
 	return {
 		get: get
-	}
+	};
 }
 angular.module('vimeoModule').factory('dataFromVimeo', ['$http','$q', dataFromVimeo]);

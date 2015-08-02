@@ -29,6 +29,6 @@ function addVideo(storage,checkAnchor) {
 
 	return {
 		add: add
-	}
+	};
 }
 angular.module('ytApp').factory('addVideo', ['storage', 'checkAnchor', addVideo]);
