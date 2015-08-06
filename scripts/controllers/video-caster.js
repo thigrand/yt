@@ -20,10 +20,12 @@ function videoCaster( $http, videoData, storage, videoData2, checkAnchor, object
 		vidcast.videoToPlay = url;
 		return url;
 	};
-	console.log("helloController");
+
 	function urlForPlayer () {
 		var url;
-		if($stateParams.site === 'youtube') {
+		console.log($stateParams.source, "source");
+		console.log($stateParams.id, "id");
+		if($stateParams.source === 'youtube') {
 			url = 'http://www.youtube.com/embed/' + $stateParams.id;
 		} else {
 			url = 'https://player.vimeo.com/video/' + $stateParams.id;

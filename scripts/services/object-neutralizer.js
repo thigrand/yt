@@ -21,7 +21,7 @@ function objectNeutralizer() {
 			name : videoObject.items[0].snippet.title,
 			viewCount : videoObject.items[0].statistics.viewCount,
 			likesCount : videoObject.items[0].statistics.likeCount,
-			thumbnail : videoObject.items[0].snippet.thumbnails.standard.url,
+			thumbnail : videoObject.items[0].snippet.thumbnails.medium.url,
 			baseUrl : 'http://www.youtube.com/embed/',
 			playerUrl : 'http://www.youtube.com/embed/' + videoObject.items[0].id
 		};
@@ -34,6 +34,7 @@ function objectNeutralizer() {
 			for (var i = 0; i < data.length; i++) {
 				//console.log(data[i]);
 				if (data[i].pageInfo) {
+					console.log(data[i]);
 					arrayOfVideosObjects.push(transformYouTubeObject(data[i]));
 				} else {
 					arrayOfVideosObjects.push(transformVimeoObject(data[i]));

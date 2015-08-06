@@ -1,5 +1,5 @@
 
-<div > Karramba2
+<div > 
 
     <h3>Gallery:</h3>
 
@@ -26,10 +26,12 @@
                 <div class="col-md-12" id="thumbnail">
                     <img ng-src="{{video.thumbnail}}" class="img-rounded img-thumbnail center-block" 
 
-                    ui-sref='video-player({ site: video.source, id: video.id })'>
+                    ui-sref='video-player({ source: video.source, 
+                                            id:     video.id })'>
                     <!-- <img ng-src="{{video.thumbnail}}" class="img-rounded img-thumbnail center-block" data-toggle="modal" data-target="#myModal-{{$index}}"> -->
                 </div>
                 <br>
+
                 <ul class="row-same-height" id="video-data">
                     <li><b>Nazwa filmiku:</b> <span>{{video.name}}</span></li>
                     <li><b>Który obejrzano:</b> <span>{{video.viewCount}}</span> razy</li>

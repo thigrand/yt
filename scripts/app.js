@@ -1,13 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc overview
- * @name ytApp
- * @description
- * # ytApp
- *
- * Main module of the application.
- */
 angular.module('youtubeModule',[]);
 angular.module('vimeoModule',[]);
 
@@ -27,7 +19,7 @@ angular
     'vimeoModule',
 
   ])
-  .config(function ($stateProvider) {
+  .config(function ($stateProvider, $locationProvider) {
     $stateProvider
       .state('home', {
         url:'/',
@@ -37,9 +29,10 @@ angular
 
       })
       .state('video-player', {
-        url:'/player/:player/:id',
+        url:'/player/:source/:id',
         templateUrl: 'views/video-player.html',
         controller: 'videoCaster',
         controllerAs: 'vidcast'
       });
+      $locationProvider.html5Mode(true);
   });

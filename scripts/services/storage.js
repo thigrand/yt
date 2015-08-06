@@ -1,6 +1,6 @@
 'use strict';
 function storage(localStorageService) {
-	console.log("helloStorage");
+
 	var numbersComparator = function (a, b) {
 	    return a - b;
 	};

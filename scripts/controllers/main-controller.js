@@ -16,7 +16,7 @@ function MainCtrl(objectNeutralizer, videoData, storage, videoData2, checkAnchor
 	main.videoObjects = [];
 	main.currentVideoPage = [];
 
-console.log(main.ytUrlIds);
+console.log(main.ytUrlIds, "ytUrlIds");
 
 	main.getData = function() {
 		videoData.getData(main.ytUrlIds).then(function(data) {
@@ -47,14 +47,7 @@ var currentPage = 0;
 		console.log('koniec');
 		console.log(main.ytUrlIds.length);
 	};
-	// $scope.$watch( 'expr' , function(newVal, oldVal, scope) {
-	//  if (newVal !== oldVal) {
-	//  // Let's set up our parseFun with the expression
-	//  var parseFun = $parse(newVal);
-	// // Get the value of the parsed expression
-	// $scope.parsedValue = parseFun(scope);
-	//  }
-	//  });
+
 
 }
 angular
