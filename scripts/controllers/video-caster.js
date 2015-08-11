@@ -33,19 +33,24 @@ function videoCaster( $http, videoData, storage, videoData2, checkAnchor, object
 		return url;
 	}
 
- 	// videoData2.getData(vidcast.ytUrlIds); 
+ 	
  	
 
 	var getData = function() {
-		
-		videoData.getData(vidcast.ytUrlIds).then(function(data) {
+		// console.log(vidcast.ytUrlIds, "ytUrlIds");
+		videoData2.getData(vidcast.ytUrlIds)
+		// videoData.getData(vidcast.ytUrlIds)
+		.then(function(data) {
 			vidcast.videoObjects = objectNeutralizer.getData(data);
 			vidcast.currentVideoPage = pagination.getArrayForView(vidcast.videoObjects, currentPage);// || objectNeutralizer.getData(data);
 			// console.log(vidcast.videoObjects);
 			// console.log( vidcast.currentVideoPage);
 		});
 	};
+	
 	getData();
+
+
 	vidcast.closeBox = function(boxIndex) {
 		var keysOfStorage = localStorageService.keys().sort(numbersComparator);
 		localStorageService.remove(keysOfStorage[boxIndex]);
@@ -54,25 +59,7 @@ function videoCaster( $http, videoData, storage, videoData2, checkAnchor, object
 	var numbersComparator = function(a, b) {
 		return a - b;
 	};
-	// vidcast.lastLsNumber = 1 + Number(storage.getLastKeyNumber()) || 1;
-	// vidcast.addVideo = function() {
-	// 	console.log("start");
-	// 	var idFromUrl = checkAnchor.checkUrl(vidcast.ytUrl);
-	// 	console.log(vidcast.ytUrlIds.length);
-	// 	if (idFromUrl !== -1) {
-	// 		vidcast.ytUrlIds.push(idFromUrl);
-	// 		storage.setStorage(vidcast.lastLsNumber++, idFromUrl);
 
-	// 		getData();
-			
-	// 		console.log("ogarniam film");
-	// 	} else {
-	// 		alert('Błędny adres linka.');
-	// 		console.log("błąd");
-	// 	}
-	// 	console.log("koniec");
-	// 	console.log(vidcast.ytUrlIds.length);
-	// };
 
 	var currentPage = 0;
 	var videosAmount = vidcast.ytUrlIds.length;

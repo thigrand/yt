@@ -16,10 +16,13 @@ function MainCtrl(objectNeutralizer, videoData, storage, videoData2, checkAnchor
 	main.videoObjects = [];
 	main.currentVideoPage = [];
 
-console.log(main.ytUrlIds, "ytUrlIds");
+// console.log(main.ytUrlIds, "ytUrlIds");
 
 	main.getData = function() {
-		videoData.getData(main.ytUrlIds).then(function(data) {
+		
+		videoData2.getData(vidcast.ytUrlIds)
+		// videoData.getData(vidcast.ytUrlIds)
+		.then(function(data) {
 			main.videoObjects = objectNeutralizer.getData(data);
 			main.currentVideoPage = pagination.getArrayForView(main.videoObjects, currentPage);// || objectNeutralizer.getData(data);
 			// console.log(main.videoObjects);
