@@ -34,9 +34,10 @@ function objectNeutralizer() {
 			for (var i = 0; i < data.length; i++) {
 				//console.log(data[i]);
 				if (data[i].pageInfo) {
-					console.log(data[i]);
+					console.log(i, data[i]);
 					arrayOfVideosObjects.push(transformYouTubeObject(data[i]));
 				} else {
+					console.log(i, data[i]);
 					arrayOfVideosObjects.push(transformVimeoObject(data[i]));
 				}
 			}

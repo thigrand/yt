@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the ytApp
  */
-function MainCtrl(objectNeutralizer, videoData, storage, videoData2, checkAnchor, pagination, $scope) {
+function MainCtrl(objectNeutralizer, videoData, storage, videoData2, checkAnchor, pagination) {
 
 
 	var main = this;
@@ -18,10 +18,10 @@ function MainCtrl(objectNeutralizer, videoData, storage, videoData2, checkAnchor
 
 // console.log(main.ytUrlIds, "ytUrlIds");
 
-	main.getData = function() {
+	function getData() {
 		
-		videoData2.getData(vidcast.ytUrlIds)
-		// videoData.getData(vidcast.ytUrlIds)
+		videoData2.getData(main.ytUrlIds)
+		// videoData.getData(main.ytUrlIds)
 		.then(function(data) {
 			main.videoObjects = objectNeutralizer.getData(data);
 			main.currentVideoPage = pagination.getArrayForView(main.videoObjects, currentPage);// || objectNeutralizer.getData(data);
@@ -29,18 +29,20 @@ function MainCtrl(objectNeutralizer, videoData, storage, videoData2, checkAnchor
 			// console.log( main.currentVideoPage);
 		});
 	};
+	getData();
 
 var currentPage = 0;
 	main.lastLsNumber = 1 + Number(storage.getLastKeyNumber()) || 1;
 	main.addVideo = function() {
 		console.log('start');
 		var idFromUrl = checkAnchor.checkUrl(main.ytUrl);
+		
 		console.log(main.ytUrlIds.length);
 		if (idFromUrl !== -1) {
 			main.ytUrlIds.push(idFromUrl);
 			storage.setStorage(main.lastLsNumber++, idFromUrl);
 
-			main.getData();
+			getData();
 			
 			console.log('ogarniam film');
 		} else {
@@ -55,6 +57,6 @@ var currentPage = 0;
 }
 angular
 .module('ytApp')
-.controller('MainCtrl', ['objectNeutralizer', 'videoData', 'storage', 'videoData2', 'checkAnchor', 'pagination', '$scope', MainCtrl]);
+.controller('MainCtrl', ['objectNeutralizer', 'videoData', 'storage', 'videoData2', 'checkAnchor', 'pagination', MainCtrl]);
 // angular.module('ytApp').controller('MainCtrl', ['$scope', '$log',  MainCtrl]);
 

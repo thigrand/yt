@@ -8,7 +8,6 @@
  * Controller of the ytApp
  */
 function videoCaster( $http, videoData, storage, videoData2, checkAnchor, objectNeutralizer, pagination, localStorageService, $scope, $stateParams) {
-// function MainCtrl($vidcast, $log) {
 	var vidcast = this;
 	vidcast.ytUrl = ''; //take value from input
 	vidcast.ytUrlIds = storage.getIdsFromStorage() ;
@@ -33,22 +32,6 @@ function videoCaster( $http, videoData, storage, videoData2, checkAnchor, object
 		return url;
 	}
 
- 	
- 	
-
-	var getData = function() {
-		// console.log(vidcast.ytUrlIds, "ytUrlIds");
-		videoData2.getData(vidcast.ytUrlIds)
-		// videoData.getData(vidcast.ytUrlIds)
-		.then(function(data) {
-			vidcast.videoObjects = objectNeutralizer.getData(data);
-			vidcast.currentVideoPage = pagination.getArrayForView(vidcast.videoObjects, currentPage);// || objectNeutralizer.getData(data);
-			// console.log(vidcast.videoObjects);
-			// console.log( vidcast.currentVideoPage);
-		});
-	};
-	
-	getData();
 
 
 	vidcast.closeBox = function(boxIndex) {
@@ -67,9 +50,9 @@ function videoCaster( $http, videoData, storage, videoData2, checkAnchor, object
 		pagesAmount = window.Math.floor(videosAmount / boxPerPage) + 1;
 
 	vidcast.incrementPage = function() {
-		console.log(currentPage);
-		console.log(videosAmount);
-		console.log(pagesAmount);
+		// console.log(currentPage);
+		// console.log(videosAmount);
+		// console.log(pagesAmount);
 		
 		if (currentPage < pagesAmount) {
 			currentPage++;
@@ -83,6 +66,19 @@ function videoCaster( $http, videoData, storage, videoData2, checkAnchor, object
 		}
 	};
 	
+
+
+	// function getData() {
+	// 	// console.log(vidcast.ytUrlIds, "ytUrlIds");
+	// 	videoData2.getData(vidcast.ytUrlIds)
+	// 	// videoData.getData(vidcast.ytUrlIds)
+	// 	.then(function(data) {
+	// 		vidcast.videoObjects = objectNeutralizer.getData(data);
+	// 		vidcast.currentVideoPage = pagination.getArrayForView(vidcast.videoObjects, currentPage);// || objectNeutralizer.getData(data);
+	// 		// console.log(vidcast.videoObjects);
+	// 		// console.log( vidcast.currentVideoPage);
+	// 	});
+	// };
 
 }
 angular

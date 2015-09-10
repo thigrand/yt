@@ -1,6 +1,6 @@
 'use strict';
 
-function displayGallery(storage, checkAnchor, localStorageService, pagination, videoData, objectNeutralizer) {
+function displayGallery() {
 	return {
 		templateUrl: 'views/gallery.html',
 		scope: {
@@ -23,4 +23,4 @@ function displayGallery(storage, checkAnchor, localStorageService, pagination, v
 }
 angular
 	.module('ytApp')
-	.directive('displayGallery', ['storage', 'checkAnchor', 'localStorageService', 'pagination', 'videoData', 'objectNeutralizer',  displayGallery]);
+	.directive('displayGallery', [displayGallery]);
